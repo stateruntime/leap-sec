@@ -1,6 +1,6 @@
 [package]
 name = "leap-sec"
-version = "0.1.1" # keep in sync with VERSION file (single source of truth)
+version = "0.1.2" # keep in sync with VERSION file (single source of truth)
 edition = "2021"
 rust-version = "1.75"
 authors = ["Jan Piotrzkowski (babilonczyk)", "stateruntime"]
@@ -33,7 +33,7 @@ std = []
 [dependencies]
 
 [dev-dependencies]
-behave = { git = "https://github.com/stateruntime/behave", tag = "v0.8.0" }
+behave = "0.8.0"
 
 [lints.rust]
 unsafe_code = "forbid"

@@ -5,7 +5,8 @@ version = 3
 [[package]]
 name = "behave"
 version = "0.8.0"
-source = "git+https://github.com/stateruntime/behave?tag=v0.8.0#9e5dd9327723026e4a132f2092e611a9dda36a92"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "088566cbe742406579b5c89c39bb93cff6974210cefb2c366a97ca011c25ee7e"
 dependencies = [
  "behave-macros",
 ]
@@ -13,7 +14,8 @@ dependencies = [
 [[package]]
 name = "behave-macros"
 version = "0.8.0"
-source = "git+https://github.com/stateruntime/behave?tag=v0.8.0#9e5dd9327723026e4a132f2092e611a9dda36a92"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ce4a589da5613bf7b70654b109c2c2390362ae42aef85cba6dec90ebbfb6a7ea"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -22,7 +24,7 @@ dependencies = [
 
 [[package]]
 name = "leap-sec"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "behave",
 ]

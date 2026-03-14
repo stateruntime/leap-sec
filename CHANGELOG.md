@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2] — 2026-03-14
+
+### Fixed
+
+- Switch `behave` dev-dependency from git source to crates.io registry.
+
 ## [0.1.1] — 2026-03-14
 
 ### Fixed
@@ -33,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI pipeline (format, clippy, test, docs, MSRV) and tag-triggered release workflow.
 - `no_std` support (default feature `std` can be disabled).
 
-[Unreleased]: https://github.com/stateruntime/leap-sec/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/stateruntime/leap-sec/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/stateruntime/leap-sec/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/stateruntime/leap-sec/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/stateruntime/leap-sec/releases/tag/v0.1.0
