@@ -1,0 +1,60 @@
+[package]
+name = "leap-sec"
+version = "0.1.0" # keep in sync with VERSION file (single source of truth)
+edition = "2021"
+rust-version = "1.75"
+authors = ["Jan Piotrzkowski (babilonczyk)", "stateruntime"]
+description = "Leap-second handling and continuous time mappings for flight and space systems"
+homepage = "https://github.com/stateruntime/leap-sec"
+license = "Apache-2.0"
+repository = "https://github.com/stateruntime/leap-sec"
+documentation = "https://docs.rs/leap-sec"
+readme = "README.md"
+keywords = ["time", "leap-second", "utc", "tai", "gps"]
+categories = ["date-and-time", "no-std"]
+exclude = [
+    ".github/",
+    "CLAUDE.md",
+    "docs/AGENT.md",
+    "scripts/",
+    "justfile",
+    "deny.toml",
+    "rustfmt.toml",
+]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[features]
+default = ["std"]
+std = []
+
+[dependencies]
+
+[dev-dependencies]
+behave = { git = "https://github.com/stateruntime/behave", tag = "v0.8.0" }
+
+[lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+unreachable_pub = "warn"
+rust_2018_idioms = { level = "warn", priority = -1 }
+missing_debug_implementations = "warn"
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+nursery = { level = "warn", priority = -1 }
+# Specific high-value denials
+unwrap_used = "deny"
+expect_used = "deny"
+panic = "deny"
+unimplemented = "deny"
+todo = "deny"
+dbg_macro = "deny"
+print_stdout = "deny"
+print_stderr = "deny"
+# Allow pedantic lints that are too noisy
+module_name_repetitions = "allow"
+must_use_candidate = "allow"
