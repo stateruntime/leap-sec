@@ -2,9 +2,7 @@
 
 use crate::convert::{gpst_to_tai, tai_to_gpst};
 use crate::error::Error;
-use crate::types::{
-    GpstNanos, GpstSeconds, TaiNanos, TaiSeconds, UtcUnixNanos, UtcUnixSeconds,
-};
+use crate::types::{GpstNanos, GpstSeconds, TaiNanos, TaiSeconds, UtcUnixNanos, UtcUnixSeconds};
 
 /// A single entry in the leap-second table.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -58,36 +56,120 @@ pub struct LeapSeconds {
 // ---------------------------------------------------------------------------
 
 const KNOWN_TABLE: [LeapEntry; 28] = [
-    LeapEntry { utc_unix: 63_072_000, tai_minus_utc: 10 },     // 1972-01-01
-    LeapEntry { utc_unix: 78_796_800, tai_minus_utc: 11 },     // 1972-07-01
-    LeapEntry { utc_unix: 94_694_400, tai_minus_utc: 12 },     // 1973-01-01
-    LeapEntry { utc_unix: 126_230_400, tai_minus_utc: 13 },    // 1974-01-01
-    LeapEntry { utc_unix: 157_766_400, tai_minus_utc: 14 },    // 1975-01-01
-    LeapEntry { utc_unix: 189_302_400, tai_minus_utc: 15 },    // 1976-01-01
-    LeapEntry { utc_unix: 220_924_800, tai_minus_utc: 16 },    // 1977-01-01
-    LeapEntry { utc_unix: 252_460_800, tai_minus_utc: 17 },    // 1978-01-01
-    LeapEntry { utc_unix: 283_996_800, tai_minus_utc: 18 },    // 1979-01-01
-    LeapEntry { utc_unix: 315_532_800, tai_minus_utc: 19 },    // 1980-01-01
-    LeapEntry { utc_unix: 362_793_600, tai_minus_utc: 20 },    // 1981-07-01
-    LeapEntry { utc_unix: 394_329_600, tai_minus_utc: 21 },    // 1982-07-01
-    LeapEntry { utc_unix: 425_865_600, tai_minus_utc: 22 },    // 1983-07-01
-    LeapEntry { utc_unix: 489_024_000, tai_minus_utc: 23 },    // 1985-07-01
-    LeapEntry { utc_unix: 567_993_600, tai_minus_utc: 24 },    // 1988-01-01
-    LeapEntry { utc_unix: 631_152_000, tai_minus_utc: 25 },    // 1990-01-01
-    LeapEntry { utc_unix: 662_688_000, tai_minus_utc: 26 },    // 1991-01-01
-    LeapEntry { utc_unix: 709_948_800, tai_minus_utc: 27 },    // 1992-07-01
-    LeapEntry { utc_unix: 741_484_800, tai_minus_utc: 28 },    // 1993-07-01
-    LeapEntry { utc_unix: 773_020_800, tai_minus_utc: 29 },    // 1994-07-01
-    LeapEntry { utc_unix: 820_454_400, tai_minus_utc: 30 },    // 1996-01-01
-    LeapEntry { utc_unix: 867_715_200, tai_minus_utc: 31 },    // 1997-07-01
-    LeapEntry { utc_unix: 915_148_800, tai_minus_utc: 32 },    // 1999-01-01
-    LeapEntry { utc_unix: 1_136_073_600, tai_minus_utc: 33 },  // 2006-01-01
-    LeapEntry { utc_unix: 1_230_768_000, tai_minus_utc: 34 },  // 2009-01-01
-    LeapEntry { utc_unix: 1_341_100_800, tai_minus_utc: 35 },  // 2012-07-01
-    LeapEntry { utc_unix: 1_435_708_800, tai_minus_utc: 36 },  // 2015-07-01
+    LeapEntry {
+        utc_unix: 63_072_000,
+        tai_minus_utc: 10,
+    }, // 1972-01-01
+    LeapEntry {
+        utc_unix: 78_796_800,
+        tai_minus_utc: 11,
+    }, // 1972-07-01
+    LeapEntry {
+        utc_unix: 94_694_400,
+        tai_minus_utc: 12,
+    }, // 1973-01-01
+    LeapEntry {
+        utc_unix: 126_230_400,
+        tai_minus_utc: 13,
+    }, // 1974-01-01
+    LeapEntry {
+        utc_unix: 157_766_400,
+        tai_minus_utc: 14,
+    }, // 1975-01-01
+    LeapEntry {
+        utc_unix: 189_302_400,
+        tai_minus_utc: 15,
+    }, // 1976-01-01
+    LeapEntry {
+        utc_unix: 220_924_800,
+        tai_minus_utc: 16,
+    }, // 1977-01-01
+    LeapEntry {
+        utc_unix: 252_460_800,
+        tai_minus_utc: 17,
+    }, // 1978-01-01
+    LeapEntry {
+        utc_unix: 283_996_800,
+        tai_minus_utc: 18,
+    }, // 1979-01-01
+    LeapEntry {
+        utc_unix: 315_532_800,
+        tai_minus_utc: 19,
+    }, // 1980-01-01
+    LeapEntry {
+        utc_unix: 362_793_600,
+        tai_minus_utc: 20,
+    }, // 1981-07-01
+    LeapEntry {
+        utc_unix: 394_329_600,
+        tai_minus_utc: 21,
+    }, // 1982-07-01
+    LeapEntry {
+        utc_unix: 425_865_600,
+        tai_minus_utc: 22,
+    }, // 1983-07-01
+    LeapEntry {
+        utc_unix: 489_024_000,
+        tai_minus_utc: 23,
+    }, // 1985-07-01
+    LeapEntry {
+        utc_unix: 567_993_600,
+        tai_minus_utc: 24,
+    }, // 1988-01-01
+    LeapEntry {
+        utc_unix: 631_152_000,
+        tai_minus_utc: 25,
+    }, // 1990-01-01
+    LeapEntry {
+        utc_unix: 662_688_000,
+        tai_minus_utc: 26,
+    }, // 1991-01-01
+    LeapEntry {
+        utc_unix: 709_948_800,
+        tai_minus_utc: 27,
+    }, // 1992-07-01
+    LeapEntry {
+        utc_unix: 741_484_800,
+        tai_minus_utc: 28,
+    }, // 1993-07-01
+    LeapEntry {
+        utc_unix: 773_020_800,
+        tai_minus_utc: 29,
+    }, // 1994-07-01
+    LeapEntry {
+        utc_unix: 820_454_400,
+        tai_minus_utc: 30,
+    }, // 1996-01-01
+    LeapEntry {
+        utc_unix: 867_715_200,
+        tai_minus_utc: 31,
+    }, // 1997-07-01
+    LeapEntry {
+        utc_unix: 915_148_800,
+        tai_minus_utc: 32,
+    }, // 1999-01-01
+    LeapEntry {
+        utc_unix: 1_136_073_600,
+        tai_minus_utc: 33,
+    }, // 2006-01-01
+    LeapEntry {
+        utc_unix: 1_230_768_000,
+        tai_minus_utc: 34,
+    }, // 2009-01-01
+    LeapEntry {
+        utc_unix: 1_341_100_800,
+        tai_minus_utc: 35,
+    }, // 2012-07-01
+    LeapEntry {
+        utc_unix: 1_435_708_800,
+        tai_minus_utc: 36,
+    }, // 2015-07-01
     // The last leap second was inserted on 2016-12-31 at 23:59:60 UTC.
     // The new offset (37) takes effect at 2017-01-01 00:00:00 UTC.
-    LeapEntry { utc_unix: 1_483_228_800, tai_minus_utc: 37 },  // 2017-01-01
+    LeapEntry {
+        utc_unix: 1_483_228_800,
+        tai_minus_utc: 37,
+    }, // 2017-01-01
 ];
 
 static KNOWN: LeapSeconds = LeapSeconds {

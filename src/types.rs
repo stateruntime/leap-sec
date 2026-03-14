@@ -279,5 +279,9 @@ impl GpstNanos {
 const fn floor_div_i128(a: i128, b: i128) -> i128 {
     let d = a / b;
     let r = a % b;
-    if (r != 0) && ((r ^ b) < 0) { d - 1 } else { d }
+    if (r != 0) && ((r ^ b) < 0) {
+        d - 1
+    } else {
+        d
+    }
 }

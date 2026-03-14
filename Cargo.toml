@@ -1,6 +1,6 @@
 [package]
 name = "leap-sec"
-version = "0.1.0" # keep in sync with VERSION file (single source of truth)
+version = "0.1.1" # keep in sync with VERSION file (single source of truth)
 edition = "2021"
 rust-version = "1.75"
 authors = ["Jan Piotrzkowski (babilonczyk)", "stateruntime"]
